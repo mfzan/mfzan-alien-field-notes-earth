@@ -11,6 +11,9 @@ ENTRY = "★★★☆☆ Beautiful planet, gracious hosts — but the locals kep
 
 
 def main() -> None:
+    # The gate requires 1-200 characters of non-whitespace UTF-8 text.
+    if not 1 <= len(ENTRY) <= 200 or not ENTRY.strip():
+        raise ValueError(f"entry must be 1-200 characters, got {len(ENTRY)}")
     os.umask(0o022)
     out_dir = Path("/output")
     out_dir.mkdir(parents=True, exist_ok=True)
